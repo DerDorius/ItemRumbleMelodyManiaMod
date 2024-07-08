@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+
 public class Items
 {
-
     private ModObjectContext modContext;
     private ItemRumbleModModSettings modSettings;
-
 
     public Items(ModObjectContext modContext, ItemRumbleModModSettings itemRumbleModModSettings)
     {
@@ -25,20 +24,19 @@ public class Items
 
         // Has to be object, because of loading order of cs files.
         OnCollectAction = (object itemActionsObject, object itemControlObject) =>
-       {
-           // Cast the object to the correct type.
-           var itemActions = (ItemActions)itemActionsObject;
-           var itemControl = (ItemControl)itemControlObject;
+        {
+            // Cast the object to the correct type.
+            var itemActions = (ItemActions)itemActionsObject;
+            var itemControl = (ItemControl)itemControlObject;
 
-           // Get the PlayerControl of the affected player.
-           PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
+            // Get the PlayerControl of the affected player.
+            PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
 
-           // Add Actions here.
-           itemActions.AddScore(targetPlayerControl, 100);
-           itemActions.BouncePlayerScoreLabel(targetPlayerControl);
-           itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "+100 Coin");
-       },
-
+            // Add Actions here.
+            itemActions.AddScore(targetPlayerControl, 100);
+            itemActions.BouncePlayerScoreLabel(targetPlayerControl);
+            itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "+100 Coin");
+        },
     };
 
     public static readonly Item Banana = new Item("Banana")
@@ -59,7 +57,6 @@ public class Items
             itemActions.BouncePlayerScoreLabel(targetPlayerControl);
             itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "-75 Banana");
         },
-
     };
 
     public static readonly Item BlueShelli = new Item("Blue Shelli")
@@ -80,7 +77,6 @@ public class Items
             itemActions.BouncePlayerScoreLabel(targetPlayerControl);
             itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "-250 Blue Shell");
         },
-
     };
 
     public static readonly Item GreenShelli = new Item("Green Shelli")
@@ -101,7 +97,6 @@ public class Items
             itemActions.BouncePlayerScoreLabel(targetPlayerControl);
             itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "-50 Green Shell");
         },
-
     };
 
     public static readonly Item RedShelli = new Item("Red Shelli")
@@ -122,7 +117,6 @@ public class Items
             itemActions.BouncePlayerScoreLabel(targetPlayerControl);
             itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "-75 Red Shell");
         },
-
     };
 
     public static readonly Item Flashi = new Item("Flash")
@@ -140,10 +134,15 @@ public class Items
             PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
             // Add Actions here.
             itemActions.MuteAudio(2);
-            itemActions.MoveToCenterAndFadeOut(itemControl, targetPlayerControl, 0.8f, () =>
-            {
-                itemActions.ShowItemRating(targetPlayerControl, "Flashi");
-            });
+            itemActions.MoveToCenterAndFadeOut(
+                itemControl,
+                targetPlayerControl,
+                0.8f,
+                () =>
+                {
+                    itemActions.ShowItemRating(targetPlayerControl, "Flashi");
+                }
+            );
         },
     };
 
@@ -162,10 +161,15 @@ public class Items
             PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
             // Add Actions here.
             itemActions.DisableLyricsForSeconds(5);
-            itemActions.MoveToCenterAndFadeOut(itemControl, targetPlayerControl, 0.8f, () =>
-             {
-                 itemActions.ShowItemRating(targetPlayerControl, "Ghosti");
-             });
+            itemActions.MoveToCenterAndFadeOut(
+                itemControl,
+                targetPlayerControl,
+                0.8f,
+                () =>
+                {
+                    itemActions.ShowItemRating(targetPlayerControl, "Ghosti");
+                }
+            );
         },
     };
 
@@ -185,10 +189,12 @@ public class Items
             // Add Actions here.
             itemActions.AddScore(targetPlayerControl, 250);
             itemActions.BouncePlayerScoreLabel(targetPlayerControl);
-            itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "+250 Mushi Mushroom");
+            itemActions.AnimateItemCollection(
+                targetPlayerControl,
+                itemControl,
+                "+250 Mushi Mushroom"
+            );
         },
-
-
     };
 
     public static readonly Item Rocki = new Item("Rocki Rocket")
@@ -207,10 +213,13 @@ public class Items
             // Add Actions here.
             itemActions.AddScore(targetPlayerControl, 500);
             itemActions.BouncePlayerScoreLabel(targetPlayerControl);
-            itemActions.AnimateItemCollection(targetPlayerControl, itemControl, "+500 Rocki Rocket");
+            itemActions.AnimateItemCollection(
+                targetPlayerControl,
+                itemControl,
+                "+500 Rocki Rocket"
+            );
         },
     };
-
 
     public static readonly Item Stari = new Item("Star")
     {
@@ -227,10 +236,15 @@ public class Items
             PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
             // Add Actions here.
             itemActions.ChangePlaybackSpeed(3, 1.15f);
-            itemActions.MoveToCenterAndFadeOut(itemControl, targetPlayerControl, 0.8f, () =>
-             {
-                 itemActions.ShowItemRating(targetPlayerControl, "Stari Speed Up");
-             });
+            itemActions.MoveToCenterAndFadeOut(
+                itemControl,
+                targetPlayerControl,
+                0.8f,
+                () =>
+                {
+                    itemActions.ShowItemRating(targetPlayerControl, "Stari Speed Up");
+                }
+            );
         },
     };
 
@@ -241,19 +255,24 @@ public class Items
         VisualElementName = "shellCollectorItem",
         // Has to be object, because of loading order of cs files.
         OnCollectAction = (object itemActionsObject, object itemControlObject) =>
-         {
-             // Cast the object to the correct type.
-             var itemActions = (ItemActions)itemActionsObject;
-             var itemControl = (ItemControl)itemControlObject;
-             // Get the PlayerControl of the affected player.
-             PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
-             // Add Actions here.
-             itemActions.ChangePlaybackSpeed(3, 0.85f);
-             itemActions.MoveToCenterAndFadeOut(itemControl, targetPlayerControl, 0.9f, () =>
-              {
-                  itemActions.ShowItemRating(targetPlayerControl, "Snaili Slow Down");
-              });
-         },
+        {
+            // Cast the object to the correct type.
+            var itemActions = (ItemActions)itemActionsObject;
+            var itemControl = (ItemControl)itemControlObject;
+            // Get the PlayerControl of the affected player.
+            PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
+            // Add Actions here.
+            itemActions.ChangePlaybackSpeed(3, 0.85f);
+            itemActions.MoveToCenterAndFadeOut(
+                itemControl,
+                targetPlayerControl,
+                0.9f,
+                () =>
+                {
+                    itemActions.ShowItemRating(targetPlayerControl, "Snaili Slow Down");
+                }
+            );
+        },
     };
 
     public static readonly Item Eraser = new Item("Note Eraser")
@@ -263,27 +282,26 @@ public class Items
         VisualElementName = "shellCollectorItem",
         // Has to be object, because of loading order of cs files.
         OnCollectAction = (object itemActionsObject, object itemControlObject) =>
-         {
-             // Cast the object to the correct type.
-             var itemActions = (ItemActions)itemActionsObject;
-             var itemControl = (ItemControl)itemControlObject;
-             // Get the PlayerControl of the affected player.
-             List<PlayerControl> targetPlayerControls = itemActions.GetPlayerControlsInFrontOfMe();
-             PlayerControl collectingPlayerControl = itemActions.GetMyPlayerControll();
+        {
+            // Cast the object to the correct type.
+            var itemActions = (ItemActions)itemActionsObject;
+            var itemControl = (ItemControl)itemControlObject;
+            // Get the PlayerControl of the affected player.
+            List<PlayerControl> targetPlayerControls = itemActions.GetPlayerControlsInFrontOfMe();
+            PlayerControl collectingPlayerControl = itemActions.GetMyPlayerControll();
 
-             // Add Actions here.
-             foreach (PlayerControl playerControl in targetPlayerControls)
-             {
-                 itemActions.HideNotesForSeconds(playerControl, 5);
-             }
-             if (targetPlayerControls.Count == 0)
-             {
+            // Add Actions here.
+            foreach (PlayerControl playerControl in targetPlayerControls)
+            {
+                itemActions.HideNotesForSeconds(playerControl, 5);
+            }
+            if (targetPlayerControls.Count == 0)
+            {
+                itemActions.HideNotesForSeconds(collectingPlayerControl, 5);
+            }
 
-                 itemActions.HideNotesForSeconds(collectingPlayerControl, 5);
-             }
-
-             itemActions.AnimateItemCollection(collectingPlayerControl, itemControl, "Note Eraser");
-         },
+            itemActions.AnimateItemCollection(collectingPlayerControl, itemControl, "Note Eraser");
+        },
     };
 
     public static readonly Item TinaTurner = new Item("Tina Turner")
@@ -293,19 +311,24 @@ public class Items
         VisualElementName = "shellCollectorItem",
         // Has to be object, because of loading order of cs files.
         OnCollectAction = (object itemActionsObject, object itemControlObject) =>
-         {
-             // Cast the object to the correct type.
-             var itemActions = (ItemActions)itemActionsObject;
-             var itemControl = (ItemControl)itemControlObject;
-             // Get the PlayerControl of the affected player.
-             PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
-             // Add Actions here.
-             itemActions.rotateScreen(2);
-             itemActions.MoveToCenterAndFadeOut(itemControl, targetPlayerControl, 0.9f, () =>
-                    {
-                        itemActions.ShowItemRating(targetPlayerControl, "Tina Turner");
-                    });
-         },
+        {
+            // Cast the object to the correct type.
+            var itemActions = (ItemActions)itemActionsObject;
+            var itemControl = (ItemControl)itemControlObject;
+            // Get the PlayerControl of the affected player.
+            PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
+            // Add Actions here.
+            itemActions.rotateScreen(2);
+            itemActions.MoveToCenterAndFadeOut(
+                itemControl,
+                targetPlayerControl,
+                0.9f,
+                () =>
+                {
+                    itemActions.ShowItemRating(targetPlayerControl, "Tina Turner");
+                }
+            );
+        },
     };
 
     public static readonly Item Shaker = new Item("Shaker")
@@ -315,22 +338,25 @@ public class Items
         VisualElementName = "shellCollectorItem",
         // Has to be object, because of loading order of cs files.
         OnCollectAction = (object itemActionsObject, object itemControlObject) =>
-         {
-             // Cast the object to the correct type.
-             var itemActions = (ItemActions)itemActionsObject;
-             var itemControl = (ItemControl)itemControlObject;
-             // Get the PlayerControl of the affected player.
-             PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
-             // Add Actions here.
-             itemActions.shakeScreen(2, 1.3f);
-             itemActions.MoveToCenterAndFadeOut(itemControl, targetPlayerControl, 0.9f, () =>
-                    {
-                        itemActions.ShowItemRating(targetPlayerControl, "Shaker");
-                    });
-         },
+        {
+            // Cast the object to the correct type.
+            var itemActions = (ItemActions)itemActionsObject;
+            var itemControl = (ItemControl)itemControlObject;
+            // Get the PlayerControl of the affected player.
+            PlayerControl targetPlayerControl = itemActions.GetMyPlayerControll();
+            // Add Actions here.
+            itemActions.shakeScreen(2, 1.3f);
+            itemActions.MoveToCenterAndFadeOut(
+                itemControl,
+                targetPlayerControl,
+                0.9f,
+                () =>
+                {
+                    itemActions.ShowItemRating(targetPlayerControl, "Shaker");
+                }
+            );
+        },
     };
-
-
 
     public static readonly List<Item> AllItems = new List<Item>()
     {
@@ -349,7 +375,8 @@ public class Items
         TinaTurner,
         Shaker
     };
-    private Dictionary<string, Dictionary<int, float>> spawnProbsPerItem = new Dictionary<string, Dictionary<int, float>>();
+    private Dictionary<string, Dictionary<int, float>> spawnProbsPerItem =
+        new Dictionary<string, Dictionary<int, float>>();
 
     public void SetupSpawnProbabilities()
     {
@@ -359,7 +386,8 @@ public class Items
             Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv"),
             FileMode.Open,
             FileAccess.Read,
-            FileShare.ReadWrite); // so we can edit the file while the game is running
+            FileShare.ReadWrite
+        ); // so we can edit the file while the game is running
         StreamReader fileReader = new StreamReader(fileStream);
         List<string> lines = new List<string>();
 
@@ -377,15 +405,28 @@ public class Items
 
         if (itemNames.Length != AllItems.Count)
         {
-            UiManager.CreateNotification("Overwriting SpawnProbabilities.csv because the number of items has changed.");
-            UiManager.CreateNotification("Created a backup of the old SpawnProbabilities.csv in the mod's persistent data folder.");
+            NotificationManager.CreateNotification(
+                Translation.Of(
+                    "Overwriting SpawnProbabilities.csv because the number of items has changed."
+                )
+            );
+            NotificationManager.CreateNotification(
+                Translation.Of(
+                    "Created a backup of the old SpawnProbabilities.csv in the mod's persistent data folder."
+                )
+            );
             // Create Backup
-            File.Copy(Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv"), Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv.bak"));
-            File.Copy(Path.Combine(modContext.ModFolder, "SpawnProbabilities.csv"), Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv"));
+            File.Copy(
+                Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv"),
+                Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv.bak")
+            );
+            File.Copy(
+                Path.Combine(modContext.ModFolder, "SpawnProbabilities.csv"),
+                Path.Combine(modContext.ModPersistentDataFolder, "SpawnProbabilities.csv")
+            );
             SetupSpawnProbabilities();
             return;
         }
-
 
         foreach (string line in csv.Skip(1)) // Skip the header line
         {
@@ -412,18 +453,22 @@ public class Items
             if (!spawnProbsPerItem.ContainsKey(item.Name))
             {
                 Debug.LogError("Item " + item.Name + " is not in the SpawnProbabilities.csv");
-                UiManager.CreateNotification("Item " + item.Name + " is not in the SpawnProbabilities.csv, Is there a typo?");
+                NotificationManager.CreateNotification(
+                    Translation.Of(
+                        "Item "
+                            + item.Name
+                            + " is not in the SpawnProbabilities.csv, Is there a typo?"
+                    )
+                );
             }
         }
     }
-
 
     /**
      * Returns a random item based on the pointsToFirstPlace.
      */
     public Item SpawnItem(int pointsToFirstPlace, List<Item> activeItems)
     {
-
         try
         {
             Dictionary<Item, int> itemProbabilities = new Dictionary<Item, int>();
@@ -433,16 +478,17 @@ public class Items
                 int nearestKey = 0;
                 foreach (int key in spawnProbsPerItem[item.Name].Keys)
                 {
-                    if (Math.Abs(key - pointsToFirstPlace) < Math.Abs(nearestKey - pointsToFirstPlace))
+                    if (
+                        Math.Abs(key - pointsToFirstPlace)
+                        < Math.Abs(nearestKey - pointsToFirstPlace)
+                    )
                     {
                         nearestKey = key;
                     }
                 }
 
-
                 int probability = (int)spawnProbsPerItem[item.Name][nearestKey];
                 itemProbabilities.Add(item, probability);
-
             }
 
             // monte carlo method
@@ -455,7 +501,6 @@ public class Items
             int currentSum = 0;
             foreach (Item item in itemProbabilities.Keys)
             {
-
                 currentSum += itemProbabilities[item];
                 if (randomValue <= currentSum)
                 {
@@ -468,6 +513,5 @@ public class Items
             Debug.Log(e.Message);
         }
         return Coin;
-
     }
 }
